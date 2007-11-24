@@ -1,12 +1,15 @@
 package Proc::Simple::Async;
 
-use Exporter qw/import/;
 use Proc::Simple;
+
+require Exporter;
 
 use strict;
 use warnings;
 
-our $VERSION = 0.01;
+our @ISA = qw/Exporter/;
+
+our $VERSION = 0.02;
 
 our $AUTHORITY = 'cpan:BERLE';
 
@@ -53,6 +56,15 @@ Provides a prettier way of doing
   $proc->start (sub { some_task() });
 
 =back
+
+=head1 WHY?
+
+Because everyone should know what's wrong with iThreads, and forks.pm
+can be difficult to work with. Sometimes you just want to fork off a
+task without having to care too much or design your application around
+the solution. L<Proc::Simple> provides a nice interface to forking off
+tasks and this module provides some sugar around it to make the taste
+even sweeter.
 
 =head1 SEE ALSO
 
