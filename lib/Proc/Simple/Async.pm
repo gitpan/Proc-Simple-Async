@@ -9,7 +9,7 @@ use warnings;
 
 our @ISA = qw/Exporter/;
 
-our $VERSION = 0.02;
+our $VERSION = 0.03;
 
 our $AUTHORITY = 'cpan:BERLE';
 
@@ -35,36 +35,41 @@ Proc::Simple::Async - Keyword sugar for Proc::Simple
 
 =head1 SYNOPSIS
 
-  async {
-    some_task();
-  };
+  async { some_task() };
 
-  my $proc = async {
-    some_other_task(@_)
-  } 1,2,3,4;
+  my $proc = async { some_other_task(@_) } 1,2,3,4;
+
+=head1 DESCRIPTION
+
+This module lets you fork off code that does not require synchronous
+execution in a simple way. It's syntactically similar to
+implementations of the async function found in other modules such as
+L<forks>, L<threads>, and even L<Coro>. Unfortunately, all those
+modules assumes you want to build your code around the framework
+they provide and sometimes you do not want more than a simple way to
+run code asynchronously. This module is a simple wrapper around
+L<Proc::Simple> and provides nothing more than a convinient way of
+forking off a task.
 
 =head1 FUNCTIONS
 
 =over 4
 
-=item async
+=item B<async>
 
-Provides a prettier way of doing
+  my $proc = async { some_task() };
+
+Is just a more convinient way of doing:
 
   my $proc = Proc::Simple->new;
 
   $proc->start (sub { some_task() });
 
+Any additional arguments passed to the function as shown in the
+synopsis section is passed to the code provided in the first
+argument.
+
 =back
-
-=head1 WHY?
-
-Because everyone should know what's wrong with iThreads, and forks.pm
-can be difficult to work with. Sometimes you just want to fork off a
-task without having to care too much or design your application around
-the solution. L<Proc::Simple> provides a nice interface to forking off
-tasks and this module provides some sugar around it to make the taste
-even sweeter.
 
 =head1 SEE ALSO
 

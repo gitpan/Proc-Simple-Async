@@ -1,5 +1,8 @@
 Revision history for Proc::Simple::Async
 
+0.03 Nov. 25, 2007
+    - Touched up the docs a bit more.
+
 0.02 Nov. 24, 2007
     - Use a more ancient way of exporting functions so
       that certain distributions using ancient versions
